@@ -53,6 +53,8 @@ SUPABASE_KEY=your_supabase_key_here
 WEBHOOK_URL=your_webhook_url_here
 ```
 
+**Deployment note:** If you see build errors for `pydantic-core` (Rust compilation failures) when deploying to Render or similar hosts, use Python 3.11 for the build environment. Many prebuilt wheels target 3.11/3.10; newer system Python versions (for example 3.13) may trigger a source build that requires a writable Cargo registry. You can pin the Python runtime to 3.11 (see `runtime.txt`) or deploy using Docker to avoid this issue.
+
 6. Set up Supabase database:
    - Create a table named `conversations` with the following schema:
    ```sql
