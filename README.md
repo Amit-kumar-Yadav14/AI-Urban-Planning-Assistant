@@ -80,6 +80,27 @@ python main.py
 
 The backend will run on `http://localhost:8000`
 
+### Deploying with Docker (recommended for Render)
+
+If your host (like Render) uses a newer Python runtime that triggers a source build of `pydantic-core`, deploying with Docker avoids platform differences and ensures a stable build using Python 3.11.
+
+- Build the backend image locally (from repo root):
+
+```bash
+docker build -t urban-planning-backend -f backend/Dockerfile .
+```
+
+- Run locally:
+
+```bash
+docker run -p 8000:8000 --env-file backend/.env -e PORT=8000 urban-planning-backend
+```
+
+- Deploy to Render using the provided `render.yaml` (below) or by connecting the repo and selecting "Dockerfile" environment.
+
+See `render.yaml` for a minimal service definition to deploy the `backend/Dockerfile` on Render.
+
+
 ### Frontend Setup
 
 1. Navigate to the frontend directory:
